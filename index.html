@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DataGrandEst - Concours de dataviz 2025</title>
+
+    <!-- Bootstrap CSS (local) -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">DataGrandEst - Concours de dataviz 2025</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="h4 mb-3">Observation</h2>
+
+
+
+        <h2 class="h4 mb-3">Migration</h2>
+        <p>
+            Ce graphique se propose de montrer les périodes de présence et d'absence au cours de l'année
+            de 52 espèces d'oiseaux en région Grand-Est. <br>Un clic sur les noms des espèces dans la légende, permet 
+            d'ajouter ou de retirer leurs données du graphique.
+        </p>
+        <div id="chart_migration" style="height: 600px;"></div>
+        <div><small>Afin d'essayer de détecter les comportements migratoires des espèces, les données d'observations 
+            sont agrégées par espèce et par mois sans tenir compte de l'année, puis ramenées à un pourcentage 
+            de l'ensemble des observations de l'espèce. Ces observations ont été réalisées entre 2012 et 2022.</small>
+            <small>            <br>On constate que la 
+            <strong>grive mauvis</strong> par exemple, n'est visible que d'octobre à avril en région Grand-Est, puis disparaît 
+            de mai à septembre.<br>
+            La <strong>huppe fasciée</strong> quant à elle, s'absente l'hiver pour se monter ensuite d'avril à août. </small>
+        🐤
+🕊️
+🦉
+        </div>
+    </div>
+
+    <!-- jQuery (local) -->
+    <script src="js/jquery-3.6.4.min.js"></script>
+
+    <!-- Highcharts (local) -->
+    <script src="js/highcharts.js"></script>
+
+    <!-- Bootstrap JS bundle (local) -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/migration.json"></script>
+    <script src="js/migration.js"></script>
+
+</body>
+</html>
