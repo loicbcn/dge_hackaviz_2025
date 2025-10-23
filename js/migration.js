@@ -87,7 +87,7 @@ $(function () {
         },
         tooltip: {
             formatter: function () { 
-                return `<span style="color: ${this.color}">\u25CF</span> <b>${this.series.name} ${fullmonthNames[this.x-1]}:</b><br>
+                return `<span style="color: ${this.color}">\u25CF</span> <b>${this.series.name}, ${fullmonthNames[this.x-1]}:</b><br>
                 <b>${this.y}%</b> des observations...<br>
                 <b>${this.series.options.nb[this.x]}</b> observations 
                 faites par <b>${this.series.options.nbobserver[this.x]}</b> observateurs dans 

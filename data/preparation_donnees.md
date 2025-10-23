@@ -24,3 +24,19 @@ copy(
     order by espece, mois
 ) to 'C:/uwamp/www/dge_hackaviz2025/data/migrations.json' (ARRAY)
 ```
+
+comptes
+```sql
+select count(*)nb, count(distinct obsid) nbobs, min(dateobservation), max(dateobservation), sum( case when cdnom = 3590 then 1 else 0 end) nbhuppefasciee
+from read_parquet(getvariable('oiseaux')) o 
+```
+
+Radars
+```sql
+select departement, count(*) nb, count(distinct obsid) nbobserver, count(distinct cdnom) nbsepeces, 
+sum(case when cdnom in(3590, 4137, 4319, 3448, 3630) then 1 else 0 end) nb_rare, 
+count(distinct cdnom) FILTER (cdnom in(3590, 4137, 4319, 3448, 3630)) AS  nb_especes_rares
+ from read_parquet(getvariable('oiseaux')) o 
+group by departement
+order by departement 
+```
