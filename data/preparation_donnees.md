@@ -40,3 +40,24 @@ count(distinct cdnom) FILTER (cdnom in(3590, 4137, 4319, 3448, 3630)) AS  nb_esp
 group by departement
 order by departement 
 ```
+
+Données d'observation dans un repère
+```sql
+copy(
+with repere as(
+select max(st_x(geometiquette))-min(st_x(geometiquette)) decx, max(st_y(geometiquette))-min(st_y(geometiquette)) decy, 
+min(st_x(geometiquette)) minx, min(st_y(geometiquette)) miny
+-- st_x(st_transform(geometiquette,'EPSG:4326','EPSG:2154')), 
+from read_parquet(getvariable('oiseaux')) o 
+)
+select * exclude(geometiquette) from (
+select geometiquette, round(max((st_x(geometiquette)-minx)*1000/ decx),2) x, round(max((st_y(geometiquette)-miny)*1000/ decy),2) y, 
+ max(codeinseecommune) com,
+count(*) nb, count(distinct espece) nbespece,
+count(distinct cdnom) FILTER (cdnom in(3590, 4137, 4319, 3448, 3630)) AS nb_especes_rares 
+from read_parquet(getvariable('oiseaux')) o, repere r
+group by geometiquette
+order by nb desc
+)
+) to 'C:\UwAmp\www\dge_hackaviz2025\data\observations_repere.json' (ARRAY)
+```

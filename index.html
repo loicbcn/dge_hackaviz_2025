@@ -21,6 +21,9 @@
             ont réalisé <span class="badge text-bg-primary">552 180</span> signalements d'oiseaux entre le 1er janvier 2012 et le 31 décembre 2022.<br>
         Parmi ces observateurs, seuls <span class="badge text-bg-success">25</span> ont eu la chance de voir la <strong>huppe fasciée</strong>
         espèce la plus rare au sein des 52 espèces présentes dans le jeu de données.</p>
+        
+        <div id="chart_observations_repere" style="height: 600px;"></div>
+
 
         <h2 class="h4 mb-3">Migration</h2>
         <p>
@@ -44,6 +47,7 @@
     </div>
 
     <!-- jQuery (local) -->
+    <script>const depts = [{"code":"08","nom":"Ardennes"},{"code":"10","nom":"Aube"},{"code":"67","nom":"Bas-Rhin"},{"code":"68","nom":"Haut-Rhin"},{"code":"52","nom":"Haute-Marne"},{"code":"51","nom":"Marne"},{"code":"54","nom":"Meurthe-et-Moselle"},{"code":"55","nom":"Meuse"},{"code":"57","nom":"Moselle"},{"code":"88","nom":"Vosges"}];</script>
     <script src="js/jquery-3.6.4.min.js"></script>
 
     <!-- Highcharts (local) -->
@@ -53,6 +57,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/migration.json"></script>
     <script src="js/migration.js"></script>
+    <script src="js/observations_repere.js"></script>
 
 </body>
 </html>
