@@ -7,25 +7,54 @@
 
     <!-- Bootstrap CSS (local) -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ol_v6.6.1.css" rel="stylesheet">
+    <link href="css/ol-ext.min.css" rel="stylesheet">
+    <style>
+        .tooltipss{ background-color:rgba(255,255,255,.5);}
+    </style>
+
+    
+    <script src="js/ol_v6.6.1.js"></script>
+    <script src="js/ol-ext.min.js"></script>
+
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">DataGrandEst - Concours de dataviz 2025</a>
+            <a class="navbar-brand" href="">DataGrandEst - Concours de dataviz 2025</a>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mb-5">
+
+        <div class="alert alert-info" role="alert">
+        Ne ratez pas l'attribution des <strong>cuicuis d'or</strong> en fin de page!!!
+        </div>      
+
         <h2 class="h4 mb-3">Observation</h2>
         <p><span class="badge text-bg-primary">6795</span> observateurs, répartis dans les 10 départements de la région Grand Est, 
             ont réalisé <span class="badge text-bg-primary">552 180</span> signalements d'oiseaux entre le 1er janvier 2012 et le 31 décembre 2022.<br>
         Parmi ces observateurs, seuls <span class="badge text-bg-success">25</span> ont eu la chance de voir la <strong>huppe fasciée</strong>
-        espèce la plus rare au sein des 52 espèces présentes dans le jeu de données.</p>
+        espèce la plus <a href="#defrare">rare<sup>(*)</sup></a> au sein des 52 espèces présentes dans le jeu de données.</p>
         
-        <div id="chart_observations_repere" style="height: 600px;"></div>
+        <h4 class="h5">Répartition territoriale, une couverture presque complète</h4>
+
+        <div id="map_observ" style="height: 600px;border:1px solid black"></div>
+        <p><small>Sur cette carte, la région Grand-Est a été découpée par une grille de carrés de 10km de côtés. Les données d'observations
+            ont été agrégées par carré. <br>
+            Les carrés en gris représentent des zones où aucune ovservation n'a été réalisée entre 2012 et 2022.<br>
+            La taille des points violets indiquent le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
+            indiquent que plus de 50 espèces ou plus ont été observées dans le carré. Ce sont de bons "spots".<br>
+            Le survol de la grille par la souris permet d'obtenir des informations supplémentaires. En décochant la couche 'grille'
+            en haut à droite de la carte, l'infobulle n'apparaît plus au survol de la carte. Enfin, Le plan IGN est affichable pour 
+            aider à la localisation, son opacité est réglable grâce au curseur situé sous le nom de la couche.
+            </small>
+        </p>
+  
 
 
-        <h2 class="h4 mb-3">Migration</h2>
+        <h2 class="h3 mb-3">Migration</h2>
         <p>
             Ce graphique se propose de montrer les périodes de présence et d'absence au cours de l'année
             de 52 espèces d'oiseaux en région Grand-Est. <br>Un clic sur les noms des espèces dans la légende, permet 
@@ -39,11 +68,51 @@
             <small>            <br>On constate que la 
             <strong>grive mauvis</strong> par exemple, n'est visible que d'octobre à avril en région Grand-Est, puis disparaît 
             de mai à septembre.<br>
-            La <strong>huppe fasciée</strong> quant à elle, s'absente l'hiver pour se monter ensuite d'avril à août. </small>
-        🐤
-🕊️
-🦉
+            La <strong>huppe fasciée</strong> quant à elle, s'absentait l'hiver pour se monter ensuite d'avril à août ... 
+            Elle n'est plus apparue depuis juin 2014!
+        </small>
+
         </div>
+        <h2 class="h4 mt-3 mb-3">Distinction</h2>
+        <p>Parmi les nombreux observateurs ayant permis de constituer cette base de données, certains se distinguent par 
+            leur persévérence.<br>J'ai donc décidé, à l'unanimité, d'attribuer des 
+            <span class="badge text-bg-warning">cuicuis d'or</span> à ces zélés serviteurs 
+            de la cause ornithologique.
+        </p>
+        <h4 class="h5">Voici les <span class="badge text-bg-warning">Les cuicuis d'or:</span></h4>
+        <table class="table table-striped align-middle">
+            <tbody>
+                <tr>
+                    <th>🐤 Cuicui d'or d'or 🐤</th>
+                    <td>M/Mme Observateur 20<br>Haut-Rhin</td>
+                    <td>
+                        <div id="gcuicui_20"></div>
+                    </td>       
+                </tr>
+                <tr>
+                    <th>🕊️ Cuicui d'or d'argent 🕊️</th>
+                    <td>Mme/M Observateur 29<br>Moselle</td>   
+                    <td>
+                        <div id="gcuicui_29"></div>
+                    </td>           
+                </tr>
+                <tr>
+                    <th>🦉 Cuicui d'or de bronze 🦉</th>
+                    <td>Mme/M Observateur 13<br>Vosges</td>
+                    <td>
+                        <div id="gcuicui_13"></div>
+                    </td>            
+                </tr>
+
+            </tbody>
+
+        </table>
+        <hr>
+        <sup id="defrare">(*)</sup> Espèces rares au sens de cette page: les 5 espèces les moins observées dans le jeu de données: <br>
+        la <strong>Huppe fasciée</strong> (observée 43 fois en 11 ans), la <strong>Grive mauvis</strong> (209), 
+        le <strong>Gobemouche gris</strong> (289), 
+        la <strong>Perruche à collier</strong> (372) et le <strong>Pic épeichette</strong> (407).
+
     </div>
 
     <!-- jQuery (local) -->
@@ -57,7 +126,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/migration.json"></script>
     <script src="js/migration.js"></script>
-    <script src="js/observations_repere.js"></script>
-
+    <script src="js/map_observ.js"></script>
+    <script src="js/cuicui.js"></script>
 </body>
 </html>

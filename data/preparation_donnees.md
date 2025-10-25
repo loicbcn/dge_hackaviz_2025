@@ -61,3 +61,30 @@ order by nb desc
 )
 ) to 'C:\UwAmp\www\dge_hackaviz2025\data\observations_repere.json' (ARRAY)
 ```
+
+Grille, centroïdes et données
+```sql
+copy(
+with oiseaux as(
+select st_transform(geometiquette, 'EPSG:4326','EPSG:2154',true) geom, * exclude(geometiquette)
+ from read_parquet(getvariable('oiseaux')) o 
+), grille_stats as(
+	select max(g.geom) geom, 
+	g.id, 
+	max(g.code) cdep, max(g.nom) dep, 
+	count(obsid) nb, 
+	count(distinct obsid) nbobserver, count(distinct cdnom) nbesp, 
+	cast(sum(case when cdnom in(3590, 4137, 4319, 3448, 3630) then 1 else 0 end) as integer) nbrar, 
+	count(distinct cdnom) FILTER (cdnom in(3590, 4137, 4319, 3448, 3630)) AS  nbesprar
+	from st_read(getvariable('grille')) g
+	left join oiseaux o on st_intersects(o.geom, g.geom)
+	group by g.id
+	order by g.id
+)
+select st_centroid(st_transform(geom,'EPSG:2154','EPSG:3857',true)) geom, 
+* exclude(geom)  
+from grille_stats
+order by id
+) to 'C:\projets\dge_hackaviz2025\data\created\centr_grille_10000_3857_data.geojson' 
+	WITH (FORMAT gdal, DRIVER 'geojson', LAYER_CREATION_OPTIONS 'WRITE_BBOX=YES', SRS 'EPSG:3857');
+```

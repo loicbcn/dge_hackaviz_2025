@@ -1,5 +1,5 @@
 $(function () {
-    console.log(depts);
+    //console.log(depts);
     const colors = ['#7f0000','#cc0000','#ff4444','#ff7f7f','#ffb2b2','#995100','#cc6c00','#ff8800','#ffbb33','#ffe564',
         '#2c4c00','#436500','#669900','#99cc00','#d2fe4c','#3c1451','#6b238e','#9933cc','#aa66cc','#bc93d1',
         '#004c66','#007299','#0099cc','#33b5e5','#8ed5f0','#660033','#b20058','#e50072','#ff3298','#ff7fbf'];
@@ -29,7 +29,7 @@ $(function () {
             }
             
         }
-        console.log(series);
+        //console.log(series);
 
 
         let chart_observations_repere = Highcharts.chart('chart_observations_repere', {
