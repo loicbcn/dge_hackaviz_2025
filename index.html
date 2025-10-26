@@ -28,30 +28,38 @@
 
     <div class="container mb-5">
 
-        <div class="alert alert-info" role="alert">
-        Ne ratez pas l'attribution des <strong>cuicuis d'or</strong> en fin de page!!!
-        </div>      
+        <div class="row">
+            <div class="col-md-10">
+                <div class="alert alert-info" role="alert">
+                Ne ratez pas l'attribution des <strong>cuicuis d'or</strong> en fin de page!!!
+                </div>      
+                <h2 class="h4 mb-3">Observation</h2>
+                <p><span class="badge text-bg-primary">6795</span> observateurs, répartis dans les 10 départements de la région Grand Est, 
+                    ont réalisé <span class="badge text-bg-primary">552 180</span> signalements d'oiseaux entre le 1er janvier 2012 et le 31 décembre 2022.<br>
+                Parmi ces observateurs, seuls <span class="badge text-bg-success">25</span> ont eu la chance de voir la <strong>huppe fasciée</strong>
+                espèce la plus <a href="#defrare">rare<sup>(*)</sup></a> au sein des 52 espèces présentes dans le jeu de données.</p>
+                
+                </div>
+                <div class="col-md-2 text-end">
+                    <img src="imgs/wanted_compressed.png" style="max-height:150px" class="img-fluid" 
+                        alt="'Wanted Alive or Alive' avec une huppe fasciée" title="'Wanted Alive or Alive'">
+                    <div><small>Disparue depuis<br>le 24 juin 2014<br>à Rives Dervoises<br>en Haute_Marne</small></div>
+                </div>
+            </div>
 
-        <h2 class="h4 mb-3">Observation</h2>
-        <p><span class="badge text-bg-primary">6795</span> observateurs, répartis dans les 10 départements de la région Grand Est, 
-            ont réalisé <span class="badge text-bg-primary">552 180</span> signalements d'oiseaux entre le 1er janvier 2012 et le 31 décembre 2022.<br>
-        Parmi ces observateurs, seuls <span class="badge text-bg-success">25</span> ont eu la chance de voir la <strong>huppe fasciée</strong>
-        espèce la plus <a href="#defrare">rare<sup>(*)</sup></a> au sein des 52 espèces présentes dans le jeu de données.</p>
-        
-        <h4 class="h5">Répartition territoriale, une couverture presque complète</h4>
+                <h4 class="h5">Répartition territoriale, une couverture presque complète</h4>
 
-        <div id="map_observ" style="height: 600px;border:1px solid black"></div>
-        <p><small>Sur cette carte, la région Grand-Est a été découpée par une grille de carrés de 10km de côtés. Les données d'observations
-            ont été agrégées par carré. <br>
-            Les carrés en gris représentent des zones où aucune ovservation n'a été réalisée entre 2012 et 2022.<br>
-            La taille des points violets indiquent le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
-            indiquent que plus de 50 espèces ou plus ont été observées dans le carré. Ce sont de bons "spots".<br>
-            Le survol de la grille par la souris permet d'obtenir des informations supplémentaires. En décochant la couche 'grille'
-            en haut à droite de la carte, l'infobulle n'apparaît plus au survol de la carte. Enfin, Le plan IGN est affichable pour 
-            aider à la localisation, son opacité est réglable grâce au curseur situé sous le nom de la couche.
-            </small>
-        </p>
-  
+                <div id="map_observ" style="height: 600px;border:1px solid black"></div>
+                <p><small>Sur cette carte, la région Grand-Est a été découpée par une grille de carrés de 10km de côtés. Les données d'observations
+                    ont été agrégées par carré. <br>
+                    Les carrés en gris représentent des zones où aucune ovservation n'a été réalisée entre 2012 et 2022.<br>
+                    La taille des points violets indiquent le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
+                    indiquent que plus de 50 espèces ou plus ont été observées dans le carré. Ce sont de bons "spots".<br>
+                    Le survol de la grille par la souris permet d'obtenir des informations supplémentaires. En décochant la couche 'grille'
+                    en haut à droite de la carte, l'infobulle n'apparaît plus au survol de la carte. Enfin, Le plan IGN est affichable pour 
+                    aider à la localisation, son opacité est réglable grâce au curseur situé sous le nom de la couche.
+                    </small>
+                </p>
 
 
         <h2 class="h3 mb-3">Migration</h2>
@@ -83,22 +91,22 @@
         <table class="table table-striped align-middle">
             <tbody>
                 <tr>
-                    <th>🐤 Cuicui d'or d'or 🐤</th>
-                    <td>M/Mme Observateur 20<br>Haut-Rhin</td>
+                    <th><span class="fs-1">🐤</span> Cuicui d'or d'or</th>
+                    <td>M/Mme <br>Observateur 20<br>Haut-Rhin</td>
                     <td>
                         <div id="gcuicui_20"></div>
                     </td>       
                 </tr>
                 <tr>
-                    <th>🕊️ Cuicui d'or d'argent 🕊️</th>
-                    <td>Mme/M Observateur 29<br>Moselle</td>   
+                    <th><span class="fs-1">🕊️</span> Cuicui d'or d'argent</th>
+                    <td>Mme/M <br>Observateur 29<br>Moselle</td>   
                     <td>
                         <div id="gcuicui_29"></div>
                     </td>           
                 </tr>
                 <tr>
-                    <th>🦉 Cuicui d'or de bronze 🦉</th>
-                    <td>Mme/M Observateur 13<br>Vosges</td>
+                    <th><span class="fs-1">🦉</span> Cuicui d'or de bronze</th>
+                    <td>Mme/Mw<br>Observateur 13<br>Vosges</td>
                     <td>
                         <div id="gcuicui_13"></div>
                     </td>            
