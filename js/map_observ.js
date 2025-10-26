@@ -130,7 +130,7 @@ $(function() {
         })
 
     let map = new ol.Map({
-        interactions: ol.interaction.defaults({mouseWheelZoom:true}),
+        interactions: ol.interaction.defaults({mouseWheelZoom:false}),
         controls: ol.control.defaults().extend([
             new ol.control.FullScreen()
         ]),
@@ -139,11 +139,21 @@ $(function() {
         view: new ol.View({
             zoom: zoom,
             center: [624505.815, 6243675.333], //[130742.2,5358235.1],
-            //maxZoom: 15,
-            //minZoom: 8
+            maxZoom: 15,
+            minZoom: 7
         }),
-        layers: [plan_ign, dept_layer, grille_point_layer,grille_layer]//, communes_layer, epci_layer, scot_layer]
+        layers: [plan_ign, dept_layer, grille_point_layer,grille_layer],//, communes_layer, epci_layer, scot_layer]
     });
+
+    const mouseWheelInt = new ol.interaction.MouseWheelZoom();
+    map.addInteraction(mouseWheelInt);
+
+    map.on('wheel', function(evt) {
+        mouseWheelInt.setActive(ol.events.condition.shiftKeyOnly(evt));
+    });
+
+
+
     map.addControl(new ol.control.LayerSwitcher({ trash: false, extent:true, collapsed: false, reordering:false }));
     // Define a new legend
     var legend = new ol.legend.Legend({ 

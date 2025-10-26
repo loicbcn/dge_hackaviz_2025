@@ -50,10 +50,14 @@
                 <h4 class="h5">Répartition territoriale, une couverture presque complète</h4>
 
                 <div id="map_observ" style="height: 600px;border:1px solid black"></div>
+                <div class="form_help text-end mt-0 mb-3">
+                    <small>Pour effectuer un zoom dans la carte: <strong>⇧maj + 🖲️ Molette souris</strong></small> &nbsp;&nbsp; --- &nbsp;&nbsp;
+                    <small>Sources: IGN, <a href="https://www.oiseauxdesjardins.fr/">Observatoire des oiseaux des jardins</a></small>
+                </div>
                 <p><small>Sur cette carte, la région Grand-Est a été découpée par une grille de carrés de 10km de côtés. Les données d'observations
                     ont été agrégées par carré. <br>
-                    Les carrés en gris représentent des zones où aucune ovservation n'a été réalisée entre 2012 et 2022.<br>
-                    La taille des points violets indiquent le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
+                    Les carrés en gris représentent des zones où aucune observation n'a été réalisée entre 2012 et 2022.<br>
+                    La taille des points violets indique le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
                     indiquent que plus de 50 espèces ou plus ont été observées dans le carré. Ce sont de bons "spots".<br>
                     Le survol de la grille par la souris permet d'obtenir des informations supplémentaires. En décochant la couche 'grille'
                     en haut à droite de la carte, l'infobulle n'apparaît plus au survol de la carte. Enfin, Le plan IGN est affichable pour 
@@ -70,6 +74,7 @@
             du graphique permet d'obtenir des informations supplémentaires.
         </p>
         <div id="chart_migration" style="height: 600px;"></div>
+
         <div><small>Afin d'essayer de détecter les comportements migratoires des espèces, les données d'observations 
             sont agrégées par espèce et par mois sans tenir compte de l'année, puis ramenées à un pourcentage 
             de l'ensemble des observations de l'espèce. Ces observations ont été réalisées entre 2012 et 2022.</small>

@@ -42,16 +42,17 @@ $(function () {
         chart: {
             id : 'chart_migration',
         },
+        title: { text: 'Présence des espèces selon les mois de l\'année', align:'center'},
         exporting : {
             sourceWidth : 1200,
             sourceHeight : 675,
             scale : 2,
         },
-        title: {
-            text: undefined
-        },
         credits: {
-            enabled: false
+            enabled: true,
+            text: 'Source: Observatoire des oiseaux des jardins',
+            href:'https://www.oiseauxdesjardins.fr/',
+
         },
         colors: ['#7f0000','#cc0000','#ff4444','#ff7f7f','#ffb2b2','#995100','#cc6c00','#ff8800','#ffbb33','#ffe564',
                 '#2c4c00','#436500','#669900','#99cc00','#d2fe4c','#3c1451','#6b238e','#9933cc','#aa66cc','#bc93d1',
