@@ -46,7 +46,18 @@ $(function() {
         let fill_color = 'transparent'
         if(feature.getProperties().nb == 0) {
             fill_color = 'rgba(112, 112, 112, 0.1)'
+        } else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'u') {
+            fill_color = 'rgba(255,0,0,0.1)';
         }
+        else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'a') {
+            fill_color = 'rgba(255,255,0,0.1)';
+        }
+        else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'n') {
+            fill_color = 'rgba(0,255,0,0.1)';
+        }
+        else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'h') {
+            fill_color = 'rgba(0,0,255,0.1)';
+        }           
         return new ol.style.Style({
             stroke: new ol.style.Stroke({
                 color: color,
@@ -103,7 +114,7 @@ $(function() {
         'title':'Grille',
         allwaysOnTop : false,
         source: new ol.source.Vector({
-        url: 'data/grille_10000_3857_data.geojson',
+        url: 'data/grille_10000_3857_data_ocsol.geojson',
         format: new ol.format.GeoJSON(),
         }),
         style: grilleStyleFunction
@@ -142,7 +153,7 @@ $(function() {
             maxZoom: 15,
             minZoom: 7
         }),
-        layers: [plan_ign, dept_layer, grille_point_layer,grille_layer],//, communes_layer, epci_layer, scot_layer]
+        layers: [plan_ign, dept_layer, grille_layer, grille_point_layer],//, communes_layer, epci_layer, scot_layer]
     });
 
     const mouseWheelInt = new ol.interaction.MouseWheelZoom();
@@ -176,7 +187,11 @@ $(function() {
     legend.addItem({ title:' 1 observation', properties: { nb: 1 }, typeGeom: 'Point', height: 18 });
     legend.addItem({height: 18 });
     legend.addItem({title:'Grille', height: 30 });
-    legend.addItem({title:' Au moins 1 observation', properties: { nb: 100 }, typeGeom: 'MultiPolygon', style: grilleStyleFunction, height: 18 });
+    legend.addItem({title:' Urbain majoritaire', properties: { nb: 100, occsol:'u' }, typeGeom: 'MultiPolygon', style: grilleStyleFunction, height: 18 });
+    legend.addItem({height: 5 });
+    legend.addItem({title:' Agricole majoritaire', properties: { nb: 100, occsol:'a' }, typeGeom: 'MultiPolygon', style: grilleStyleFunction, height: 18 });
+    legend.addItem({height: 5 });
+    legend.addItem({title:' Naturel majoritaire', properties: { nb: 100, occsol:'n' }, typeGeom: 'MultiPolygon', style: grilleStyleFunction, height: 18 });
     legend.addItem({height: 5 });
     legend.addItem({title:' Aucune observation', properties: { nb: 0 }, typeGeom: 'MultiPolygon', style: grilleStyleFunction,height: 18 });
 

@@ -90,3 +90,43 @@ order by id
 ) to 'C:\projets\dge_hackaviz2025\data\created\centr_grille_10000_3857_data.geojson' 
 	WITH (FORMAT gdal, DRIVER 'geojson', LAYER_CREATION_OPTIONS 'WRITE_BBOX=YES', SRS 'EPSG:3857');
 ```
+
+Ajouter l'occupation du sol à la grille
+```sql
+copy(
+with communes as(
+	select st_transform(c.geom, 'EPSG:4326','EPSG:3857',true) geom, 
+	c.code, replace(urbain,',','.')::real urbain, 
+	a.agricole, a.naturel, a.eau, a.humide, a.surfacetotale
+	from read_parquet(getvariable('communes')) c
+	inner join read_parquet(getvariable('communes_attrib')) a on a.codeinsee = c.code and a.annee = 2021
+), inters as(
+	select g.id, st_intersection(c.geom, g.geom), 
+	st_area(st_intersection(  st_transform(c.geom, 'EPSG:3857','EPSG:2154',true), st_transform(g.geom, 'EPSG:3857','EPSG:2154',true)  ))/10000 surf_inter, 
+	c.code,
+	c.urbain, c.agricole, c.naturel, c.eau, c.humide,c.surfacetotale
+	from st_read(getvariable(grille_3857)) g
+	INNER  join communes c on st_intersects(c.geom, g.geom)
+), gridoccsol as(
+	select id, sum((surf_inter/surfacetotale)*urbain) urbain, sum((surf_inter/surfacetotale)*agricole) agricole, 
+	sum((surf_inter/surfacetotale)*naturel) naturel, 
+	sum((surf_inter/surfacetotale)*eau) eau, sum((surf_inter/surfacetotale)*humide) humide
+	from inters
+	group by id
+), gocsol as(
+	select id, 
+		case when urbain > agricole and urbain > naturel and urbain > humide+eau then 'u'  
+			 when agricole > urbain and agricole > naturel and agricole > humide+eau then 'a'
+			 when naturel > urbain and naturel > agricole and naturel > humide+eau then 'n'
+			 when humide+eau > urbain and humide+eau > agricole and humide+eau > naturel then 'h'
+		else null end occsol
+	from gridoccsol
+	order by id
+)
+select g.*, o.occsol
+from st_read(getvariable(grille_3857)) g
+inner join gocsol o on o.id = g.id
+order by g.id
+) to 'C:/uwamp/www/dge_hackaviz2025/data/grille_10000_3857_data_ocsol.geojson'
+	WITH (FORMAT gdal, DRIVER 'geojson', LAYER_CREATION_OPTIONS 'WRITE_BBOX=YES', SRS 'EPSG:3857');
+```
