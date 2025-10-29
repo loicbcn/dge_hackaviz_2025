@@ -3,7 +3,12 @@ $(function() {
         13: '#50341cff',
         20: '#f1cf0eff',
         29: '#b8b8b8ff',
-    }
+    };
+    const imgs = {
+        13: 'imgs/note_bronze.png',
+        20: 'imgs/note_or.png',
+        29: 'imgs/note_argent.png',
+    };
     $.getJSON('data/cuicui.json', function(data) {
         $.getJSON('data/dept_annees_mois_stats.json', function(dmonth) {
 
@@ -16,7 +21,8 @@ $(function() {
                     series[data[i]['obsid']].push({
                         title: 'Nombre d\'observations',
                         name: 'observateur '+ data[i]['obsid'],
-                        color: colors[data[i]['obsid']],    
+                        color: colors[data[i]['obsid']], 
+                        img: imgs[data[i]['obsid']],   
                         data: [{x:the_date, y:data[i]['nb']}],
                         nbesp: [data[i]['nbesp']],
                         nbesprar: [data[i]['nbesprar']],
@@ -61,13 +67,18 @@ function drawCuicui(id_div, serie) {
 
     Highcharts.chart(id_div, {
         chart: {
-            type: 'column',
+            type: 'line',
             height:300,
-            backgroundColor:undefined
-            //margin: [10,0,20,50]
+            backgroundColor:undefined,
+            alignTicks: false,
+            margin: [50,100,80,80]
         },
         title: {
-            text: undefined,
+            text: 'Ecouter les oiseaux chanter',
+            style: {
+                fontWeight: 'bold',
+                fontSize: '12px'
+            }
         },
         credits: {
             enabled: true,
@@ -81,9 +92,12 @@ function drawCuicui(id_div, serie) {
             dateTimeLabelFormats: {
                 year: '%Y'
             },  
+            left:170,
+            width:'85%'
         },
         yAxis: [{
             min: 0,
+            tickInterval: 600,
             title: {
                 text: 'Nombre d\'observations',
             },
@@ -92,6 +106,7 @@ function drawCuicui(id_div, serie) {
             min:0,
             max:50,
             opposite: true,
+            gridLineWidth:0,
             title: {
                 text: 'Nombre d\'espèces distinctes observées',
             }
@@ -136,7 +151,7 @@ function drawCuicui(id_div, serie) {
                             showvalms.push(Date.parse(showval[i]));
                         }   
                         if ( showvalms.indexOf(this.x) !== -1 ) {
-                            return this.y;
+                            return this.y +'🎵';
                         } else {
                             return;// this.y === 0 ? '' : this.y;
                         }
@@ -150,10 +165,16 @@ function drawCuicui(id_div, serie) {
         series: [
             {
                 yAxis:0,
-                type: 'column',
+                type: 'line',
                 name: 'Nombre d\'observations',
                 data: serie[0].data,
                 color: serie[0].color,
+                lineWidth:1,
+                marker:{
+                    symbol: 'url('+ serie[0].img +')',
+                    width:15,
+                    height:30
+                },
                 pointWidth: 15,
                 tooltip:{
                     headerFormat: 'Année {point.key: %Y}<br/>',
@@ -163,6 +184,7 @@ function drawCuicui(id_div, serie) {
                 yAxis:1,
                 name: 'Cumul d\'espèces découvertes',
                 type: 'line',
+                               lineWidth:1,
                 data: serie[1].data,
                 tooltip:{
                     headerFormat: '{point.key:%B %Y}<br/>',
