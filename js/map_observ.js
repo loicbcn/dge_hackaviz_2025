@@ -183,7 +183,7 @@ $(function() {
 
     // Add empty row to 
     legend.addItem({});
-    legend.addItem({title:'Points', height: 20 });
+    legend.addItem({title:'Points', height: 20 ,  textStyle: new ol.style.Text({ font: 'bold 12px "Arial",sans-serif'}) });
     legend.addItem({ title:' Plus de 50 espèces\n observées', properties: { nb:10000, nbesp: 51 }, typeGeom: 'Point', height: 38 });
     legend.addItem({ title:' 10 000 observations', properties: { nb: 10000 }, typeGeom: 'Point', height: 18 });
     legend.addItem({ title:' 2000 observations', properties: { nb: 2000 }, typeGeom: 'Point', height: 18 });
