@@ -11,6 +11,7 @@
     <link href="css/ol-ext.min.css" rel="stylesheet">
     <style>
         .tooltipss{ background-color:rgba(255,255,255,.5);}
+        ul.ol-legend { font-size:0.4rem;}
     </style>
 
     
@@ -48,22 +49,22 @@
             </div>
 
                 <h4 class="h5">Répartition territoriale des observations, une couverture presque complète</h4>
-
+                <p>La carte suivante représente l'Agrégation sur une grille de 10x10km des observations sur 11 ans ainsi que de l'occupation du sol des communes.</p>
+                <small>⚠️ Lorsqu'un cercle couvre entièrement une case de la grille, zoomer pour pouvoir voir l'info-bulle de la cellulse.</small>
                 <div id="map_observ" style="height: 600px;border:1px solid black"></div>
                 <div class="form_help text-end mt-0 mb-3">
                     <small>Pour effectuer un zoom dans la carte: <strong>⇧maj + 🖲️ Molette souris</strong></small> &nbsp;&nbsp; --- &nbsp;&nbsp;
                     <small>Sources: IGN, <a href="https://www.oiseauxdesjardins.fr/">Observatoire des oiseaux des jardins</a></small>
                 </div>
-                <p><small>Sur cette carte, la région Grand-Est a été découpée par une grille de carrés de 10km de côtés. Les données d'observations
-                    ont été agrégées par carré. <br>
-                    Les carrés en gris représentent des zones où aucune observation n'a été réalisée entre 2012 et 2022, les autres carrés sont colorés 
-                    selon l'occupation du sol majoritaire.<br>
-                    La taille des points violets indique le nombre d'observations réalisé sur la période. Les ronds cerclés de rouge
-                    indiquent que plus de 50 espèces ou plus ont été observées dans le carré. Ce sont de bons "spots".<br>
-                    Le survol de la grille par la souris permet d'obtenir des informations supplémentaires. En décochant la couche 'grille'
-                    en haut à droite de la carte, l'infobulle n'apparaît plus au survol de la carte. Enfin, Le plan IGN est affichable pour 
-                    aider à la localisation, son opacité est réglable grâce au curseur situé sous le nom de la couche.
-                    </small>
+                <p>Des observations d'oiseaux remontent de tout le territoire de la région Grand-Est. La régularité de ces relevés est cependant altérée 
+par la quantité d'observations très variable sur chaque zone. En effet, <span class="badge text-bg-info">36%</span> des carreaux de la 
+grille comptent moins de <strong>100</strong> observations sur 11 ans, <span class="badge text-bg-info">44%</span> entre <strong>100</strong> et 
+<strong>1000</strong>. Heureusement, chaque département a au moins un site avec près de <span class="badge text-bg-success">5000</span> 
+observations.
+Enfin, 50 espèces distinctes (ronds rouges) ont pu être observées dans 6 départements, la Marne, la Haute-Marne, la Meurthe-et-Moselle, 
+la Moselle, le Haut-Rhin et le Bas-Rhin (la région Grand-Est d'est en ouest), ce qui montre une présence exhaustive de toutes ces espèces 
+sur le territoire régional.
+              
                 </p>
 
 <hr>

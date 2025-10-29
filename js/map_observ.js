@@ -47,16 +47,16 @@ $(function() {
         if(feature.getProperties().nb == 0) {
             fill_color = 'rgba(112, 112, 112, 0.1)'
         } else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'u') {
-            fill_color = 'rgba(255,0,0,0.1)';
+            fill_color = 'rgba(255,0,0,0.2)';
         }
         else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'a') {
-            fill_color = 'rgba(255,255,0,0.1)';
+            fill_color = 'rgba(255,255,0,0.2)';
         }
         else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'n') {
-            fill_color = 'rgba(0,255,0,0.1)';
+            fill_color = 'rgba(0,255,0,0.2)';
         }
         else if (feature.getProperties().nb > 0 && feature.getProperties().occsol == 'h') {
-            fill_color = 'rgba(0,0,255,0.1)';
+            fill_color = 'rgba(0,0,255,0.2)';
         }           
         return new ol.style.Style({
             stroke: new ol.style.Stroke({
@@ -170,7 +170,10 @@ $(function() {
     var legend = new ol.legend.Legend({ 
         style: grillepointsStyleFunction,
         margin: 0,
-        size: [30, 16]
+        size: [30, 16],
+        textStyle: new ol.style.Text({
+          font: 'bold 12px "Arial",sans-serif'
+        })
     });
     map.addControl(new ol.control.Legend({ 
         collapsible: true,
@@ -210,13 +213,13 @@ $(function() {
   hover.on('hover', function(e) {
     if(e.layer.get('title') == 'Grille'){
     popup.show(e.coordinate, 
-`<table class="table table-sm table-striped table-bordered">
-	<tr><th>Département</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('dep')}</span></td></tr>
-	<tr><th>Observations</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('nb')}</span></td></tr>	
-	<tr><th>Observateurs</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('nbobserver')}</span></td></tr>	
-	<tr><th>Espèces observées</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('nbesp')}</span></td></tr>
-	<tr><th>Observations d'espèces rares</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('nbrar')}</span></td></tr>	
-	<tr><th>Nombre d'espèces rares</th><td class="text-end"><span class="badge text-bg-info fs-6">${e.feature.get('nbesprar')}</span></td></tr>	
+`<table class="table table-sm table-striped table-bordered" style="font-size:12px">
+	<tr><th>Observations</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('nb')}</span></td></tr>	
+	<tr><th>Observateurs</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('nbobserver')}</span></td></tr>	
+	<tr><th>Espèces observées</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('nbesp')}</span></td></tr>
+	<tr><th>Observations d'espèces rares</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('nbrar')}</span></td></tr>	
+	<tr><th>Nombre d'espèces rares</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('nbesprar')}</span></td></tr>	
+	<tr><th>Département</th><td class="text-end"><span class="badge text-bg-info">${e.feature.get('dep')}</span></td></tr>
 </table>`)
     }
   });
