@@ -74,7 +74,7 @@ function drawCuicui(id_div, serie) {
             margin: [50,100,80,80]
         },
         title: {
-            text: 'Ecouter les oiseaux chanter',
+            text: 'Observer et écouter les oiseaux chanter',
             style: {
                 fontWeight: 'bold',
                 fontSize: '12px'
