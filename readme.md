@@ -1,4 +1,18 @@
-# Requêtes de préparation des données.
+# Requêtes de préparation des données. (duckdb)
+
+Variables, extension spatiale
+```sql
+load spatial;
+
+set variable departements = 'C:\projets\dge_hackaviz2025\data\departements.parquet';
+set variable communes = 'C:\projets\dge_hackaviz2025\data\communes.parquet';
+set variable communes_attrib = 'C:\projets\dge_hackaviz2025\data\communes_attrib.parquet';
+set variable oiseaux = 'C:\projets\dge_hackaviz2025\data\oiseaux.parquet';
+set variable grille = 'C:\projets\dge_hackaviz2025\data\created\grille_10000_dept.gpkg';
+set variable grille_3857 = 'C:\uwamp\www\dge_hackaviz2025\data\grille_10000_3857_data.geojson';
+set variable departements = 'C:\projets\dge_hackaviz2025\data\departements.parquet';
+```
+
 
 Migrations
 ```sql
